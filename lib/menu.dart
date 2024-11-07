@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:temuhobi/widgets/item_card.dart';
+import 'package:temuhobi/widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -7,11 +9,10 @@ class MyHomePage extends StatelessWidget {
   final String className = 'PBP B'; // Kelas
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Daftar Produk", Icons.list,
-        const Color.fromARGB(255, 42, 45, 26)),
     ItemHomepage(
-        "Tambah Produk", Icons.add, const Color.fromARGB(255, 33, 57, 26)),
-    ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 39, 95, 48)),
+        "Lihat Daftar Produk", Icons.list, Color.fromARGB(255, 29, 33, 31)),
+    ItemHomepage("Tambah Produk", Icons.add, Color.fromARGB(255, 63, 71, 67)),
+    ItemHomepage("Logout", Icons.logout, Color.fromARGB(255, 159, 166, 160)),
   ];
 
   @override
@@ -20,7 +21,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       // AppBar adalah bagian atas halaman yang menampilkan judul.
       appBar: AppBar(
-        // Judul aplikasi "Mental Health Tracker" dengan teks putih dan tebal.
+        // Judul aplikasi "TemuHobi" dengan teks putih dan tebal.
         title: const Text(
           'TemuHobi',
           style: TextStyle(
@@ -31,6 +32,7 @@ class MyHomePage extends StatelessWidget {
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: const LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -38,6 +40,51 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Menampilkan teks sambutan dengan gaya tebal dan ukuran 18.
+            const Padding(
+              padding: EdgeInsets.only(top: 16.0),
+              child: Text(
+                'Welcome to TemuHobi!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+
+            // Menampilkan deskripsi tentang TemuHobi.
+            const Padding(
+              padding: EdgeInsets.only(top: 16.0),
+              child: Text(
+                'TemuHobi adalah aplikasi e-commerce yang menyediakan berbagai barang hobi seperti kartu Pokemon, sneakers, dan lain-lain.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+
+            // Memberikan jarak vertikal 16 unit.
+            const SizedBox(height: 16.0),
+
+            // Grid untuk menampilkan ItemCard dalam bentuk grid 3 kolom.
+            Expanded(
+              child: GridView.count(
+                primary: true,
+                padding: const EdgeInsets.all(20),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 3,
+                // Agar grid menyesuaikan tinggi kontennya.
+                shrinkWrap: true,
+
+                // Menampilkan ItemCard untuk setiap item dalam list items.
+                children: items.map((ItemHomepage item) {
+                  return ItemCard(item);
+                }).toList(),
+              ),
+            ),
+
             // Row untuk menampilkan 3 InfoCard secara horizontal.
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,58 +93,6 @@ class MyHomePage extends StatelessWidget {
                 InfoCard(title: 'Name', content: name),
                 InfoCard(title: 'Class', content: className),
               ],
-            ),
-
-            // Memberikan jarak vertikal 16 unit.
-            const SizedBox(height: 16.0),
-
-            // Menempatkan widget berikutnya di tengah halaman.
-            Center(
-              child: Column(
-                // Menyusun teks dan grid item secara vertikal.
-
-                children: [
-                  // Menampilkan teks sambutan dengan gaya tebal dan ukuran 18.
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
-                      'Welcome to TemuHobi!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ),
-
-                  // Menampilkan deskripsi tentang TemuHobi.
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
-                      'TemuHobi adalah aplikasi e-commerce yang menyediakan berbagai barang hobi seperti kartu Pokemon, sneakers, dan lain-lain.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-
-                  // Grid untuk menampilkan ItemCard dalam bentuk grid 3 kolom.
-                  GridView.count(
-                    primary: true,
-                    padding: const EdgeInsets.all(20),
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    // Agar grid menyesuaikan tinggi kontennya.
-                    shrinkWrap: true,
-
-                    // Menampilkan ItemCard untuk setiap item dalam list items.
-                    children: items.map((ItemHomepage item) {
-                      return ItemCard(item);
-                    }).toList(),
-                  ),
-                ],
-              ),
             ),
           ],
         ),
@@ -134,73 +129,6 @@ class InfoCard extends StatelessWidget {
             const SizedBox(height: 8.0),
             Text(content),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class ItemHomepage {
-  final String name;
-  final IconData icon;
-  final Color color;
-
-  ItemHomepage(this.name, this.icon, this.color);
-}
-
-class ItemCard extends StatelessWidget {
-  // Menampilkan kartu dengan ikon dan nama.
-
-  final ItemHomepage item;
-
-  const ItemCard(this.item, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      // Menentukan warna latar belakang dari tema aplikasi.
-      color: item.color,
-      // Membuat sudut kartu melengkung.
-      borderRadius: BorderRadius.circular(12),
-
-      child: InkWell(
-        // Aksi ketika kartu ditekan.
-        onTap: () {
-          String message;
-          if (item.name == "Lihat Daftar Produk") {
-            message = "Kamu telah menekan tombol Lihat Daftar Produk";
-          } else if (item.name == "Tambah Produk") {
-            message = "Kamu telah menekan tombol Tambah Produk";
-          } else {
-            message = "Kamu telah menekan tombol Logout";
-          }
-          // Menampilkan pesan SnackBar saat kartu ditekan.
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(content: Text(message)));
-        },
-        // Container untuk menyimpan Icon dan Text
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              // Menyusun ikon dan teks di tengah kartu.
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

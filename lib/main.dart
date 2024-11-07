@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // Mengatur warna tema aplikasi.
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.green,
-        ).copyWith(secondary: const Color.fromARGB(255, 185, 214, 198)),
+          primarySwatch: Colors.brown,
+        ).copyWith(secondary: const Color.fromARGB(255, 23, 27, 25)),
       ),
       home: MyHomePage(),
     );

@@ -231,5 +231,49 @@ class ItemCard extends StatelessWidget {
 ```
 
 
+# TUGAS 8
+
+## *Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?*
+
+const digunakan untuk membuat nilai yang tetap (konstan) pada saat kompilasi. Dengan menggunakan const, Flutter akan membuat objek hanya sekali di memori dan menggunakannya kembali jika objek yang sama dibutuhkan. Keuntungan menggunakan const adalah mengurangi penggunaan memori dan meningkatkan performa aplikasi karena objek yang sama tidak perlu dibuat berulang kali.
+
+## *Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+Column dan Row adalah widget layout yang digunakan untuk menyusun widget secara vertikal (Column) atau horizontal (Row). Perbedaan utama antara Column dan Row adalah arah susunan widget yang dihasilkan.
+
+```dart
+Column(
+  children: [
+    Text("Widget 1"),
+    Text("Widget 2"),
+    Text("Widget 3"),
+  ],
+)
+```
+
+```dart
+ Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        InfoCard(title: 'NPM', content: npm),
+        InfoCard(title: 'Name', content: name),
+        InfoCard(title: 'Class', content: className),
+      ],
+    ),
+```
+
+## *Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+Elemen input yang digunakan pada halaman form adalah TextFormField, TextField, dan ElevatedButton. TextFormField digunakan untuk membuat input field yang dapat menerima input teks dari pengguna. TextField digunakan untuk membuat input field yang dapat menerima input teks dari pengguna. ElevatedButton digunakan untuk membuat tombol yang dapat ditekan oleh pengguna.
+
+## *Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+Tema (theme) dalam aplikasi Flutter dapat diatur dengan menggunakan ThemeData. ThemeData digunakan untuk mengatur warna, font, dan gaya aplikasi secara konsisten. ThemeData dapat diatur di MaterialApp dengan properti theme. Saya mengimplementasikan tema pada aplikasi yang saya buat dengan mengatur warna primer, warna aksen, dan font aplikasi.
+
+## *Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+Navigasi dalam aplikasi dengan banyak halaman pada Flutter dapat ditangani dengan menggunakan Navigator. Navigator digunakan untuk mengelola tumpukan halaman (routes) dalam aplikasi Flutter. Navigator memiliki method untuk menampilkan halaman baru, menghapus halaman, dan kembali ke halaman sebelumnya. Navigasi dapat dilakukan dengan menggunakan Navigator.push() untuk menampilkan halaman baru dan Navigator.pop() untuk kembali ke halaman sebelumnya.
+
+
 
 </details>
