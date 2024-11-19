@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:temuhobi/menu.dart';
 import 'package:temuhobi/item_entry.dart';
 import 'package:temuhobi/product_page.dart';
+import 'package:temuhobi/widgets/screens/list_item_entry.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -67,11 +68,9 @@ class LeftDrawer extends StatelessWidget {
             leading: const Icon(Icons.list),
             title: const Text('Daftar Produk'),
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const ProductPage(),
-                ),
+                MaterialPageRoute(builder: (context) => const ItemEntryPage()),
               );
             },
           ),

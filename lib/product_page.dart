@@ -15,7 +15,7 @@ class ProductPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shoer.lk'),
+        title: const Text('TemuHobi'),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
